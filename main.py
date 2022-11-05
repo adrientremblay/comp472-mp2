@@ -27,5 +27,17 @@ def parse_file(file_name):
 
     return matrices
 
+def print_board(matrix):
+    print('  | a b c d e f |')
+    print('-----------------')
+    for i in range(6):
+        print(i, '| ', end='')
+        for j in range(6):
+            print(matrix[i][j] + ' ', end='')
+        print('|')
+    print('-----------------')
+
+
 if __name__ == '__main__':
-    print(parse_file('sample_input_1.txt'))
+    matrices = parse_file('sample_input_1.txt')
+    print_board(matrices[0])
