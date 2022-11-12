@@ -71,7 +71,6 @@ class Node:
                 new_node.cost += left - j
                 new_node.parent = self
                 moves.append(new_node)
-
             for j in range (right + 1, n): # finding moves to the right
                 if self.board[i][j] != '.':
                     break
@@ -107,6 +106,22 @@ class Node:
                 new_node.cars[car.name].coord1[0] -= top - i
                 new_node.cars[car.name].coord2[0] -= top - i
                 new_node.cost += top - i
+                new_node.parent = self
+                moves.append(new_node)
+            for i in range (bottom + 1, n): # finding moves downwards
+                if self.board[i][j] != '.':
+                    break
+                new_node = deepcopy(self)
+                to_put = bottom - top + 1
+                for target in range(i, top-1, -1):
+                    if to_put > 0:
+                        new_node.board[target][j] = car.name
+                        to_put-=1
+                    else:
+                        new_node.board[target][j] = '.'
+                new_node.cars[car.name].coord1[0] += i - bottom
+                new_node.cars[car.name].coord2[0] += i - bottom
+                new_node.cost += i - bottom
                 new_node.parent = self
                 moves.append(new_node)
 
