@@ -26,23 +26,12 @@ def parse_file(file_name):
 
     return matrices
 
-def print_board(matrix):
-    print('  | a b c d e f |')
-    print('-----------------')
-    for i in range(6):
-        print(i, '| ', end='')
-        for j in range(6):
-            print(matrix[i][j] + ' ', end='')
-        if (i != 2):
-            print('|')
-        else:
-            print()
-    print('-----------------')
-
 
 if __name__ == '__main__':
     matrices = parse_file('sample_input_1.txt')
-    print_board(matrices[0])
 
-    root_node = Node(matrices[0], None, 0, {})
-    print(root_node.cars)
+    root_node = Node(matrices[3], None, 0, {})
+    print (root_node)
+
+    children = root_node.generate_moves()
+    print(children)
