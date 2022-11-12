@@ -1,6 +1,5 @@
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from UniformCostSearch import  uniform_cost_search
+from Node import Node
 
 def parse_matrix(matrix_line):
     ret = [[0]*6 for i in range(6)] ;
@@ -34,10 +33,16 @@ def print_board(matrix):
         print(i, '| ', end='')
         for j in range(6):
             print(matrix[i][j] + ' ', end='')
-        print('|')
+        if (i != 2):
+            print('|')
+        else:
+            print()
     print('-----------------')
 
 
 if __name__ == '__main__':
     matrices = parse_file('sample_input_1.txt')
     print_board(matrices[0])
+
+    root_node = Node(matrices[0], None, 0, {})
+    print(root_node.cars)
