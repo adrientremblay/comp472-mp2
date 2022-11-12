@@ -1,5 +1,5 @@
-from UniformCostSearch import  uniform_cost_search
-from Node import Node
+from uniform_cost_search import  uniform_cost_search
+from node import Node
 
 def parse_matrix(matrix_line):
     ret = [[0]*6 for i in range(6)] ;
@@ -28,10 +28,10 @@ def parse_file(file_name):
 
 
 if __name__ == '__main__':
-    matrices = parse_file('sample_input_1.txt')
+    test_boards = parse_file('sample_input_1.txt')
 
-    root_node = Node(matrices[0], None, 0, {})
+    root_node = Node(test_boards[0], None, 0, {})
     print (root_node)
 
-    children = root_node.generate_moves()
-    print(children)
+    solution = uniform_cost_search(root_node)
+    print(solution)

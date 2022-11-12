@@ -1,4 +1,4 @@
-from Node import Node
+from node import Node
 from queue import PriorityQueue
 
 def uniform_cost_search(start_node):
@@ -12,18 +12,12 @@ def uniform_cost_search(start_node):
         if next_node.is_goal_state():
             return next_node
 
-        for child_node in generateChildren(next_node):
+        for child_node in next_node.generate_moves:
+            # big assumption here that we consider a node to be visited if the board is the same
+            # (the fuel levels may be different)
             if not child_node.board_state in closed_list:
                 open_list.put(child_node.cost, child_node)
 
         closed_list.append(next_node.board_state)
 
     return None
-
-def generateChildren(node):
-    board = node.board_state
-    children = []
-
-
-
-    return children
