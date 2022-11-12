@@ -14,7 +14,7 @@ def uniform_cost_search(start_node):
 
         for child_node in next_node.generate_moves():
             # big assumption here that we consider a node to be visited if the board is the same
-            # (the fuel levels may be different)
+            # (the fuel levels for cars, cost of the node may be different)
             if not child_node.board in closed_list:
                 open_list.put(child_node)
 

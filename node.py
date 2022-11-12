@@ -68,7 +68,20 @@ class Node:
         return moves
 
     def generate_moves_for_car(self, car):
+        """
+        I realize this method is super long and the code is confusing. I believe it is reasonably efficient, however.
+        Perhaps it could be split up into multiple methods, the reason I didn't do this because I didn't see a good
+        way to do it. Maybe I'll look into it. There is also some code that is repeated with minor changes. It might
+        be possible to simplify this code.
+
+        :param car: the car to find all possible moves for given the board of the current node (this car needs to
+        belong to this node for the algo to work correctly)
+        :return: list of all possible moves as new nodes
+        """
         moves = []
+
+        if car.fuel == 0:
+            return moves
 
         n = len(self.board) # should be 6
         if car.horizontal: # finding horizontal moves
@@ -76,7 +89,7 @@ class Node:
             left = min(car.coord1[1], car.coord2[1])
             right = max(car.coord1[1], car.coord2[1])
 
-            for j in range (left - 1, -1, -1): # finding moves to the left
+            for j in range (left - 1, max(-1, left - car.fuel - 1), -1): # finding moves to the left
                 if self.board[i][j] != '.':
                     break
                 new_node = deepcopy(self)
@@ -87,12 +100,14 @@ class Node:
                         to_put-=1
                     else:
                         new_node.board[i][target] = '.'
-                new_node.cars[car.name].coord1[1] -= left - j
-                new_node.cars[car.name].coord2[1] -= left - j
-                new_node.cost += left - j
+                distance_travelled =  left - j
+                new_node.cars[car.name].coord1[1] -= distance_travelled
+                new_node.cars[car.name].coord2[1] -= distance_travelled
+                new_node.cars[car.name].fuel -= distance_travelled
+                new_node.cost += distance_travelled
                 new_node.parent = self
                 moves.append(new_node)
-            for j in range (right + 1, n): # finding moves to the right
+            for j in range (right + 1, min(n, right + car.fuel + 1)): # finding moves to the right
                 if self.board[i][j] != '.':
                     break
                 new_node = deepcopy(self)
@@ -103,9 +118,11 @@ class Node:
                         to_put-=1
                     else:
                         new_node.board[i][target] = '.'
-                new_node.cars[car.name].coord1[1] += j - right
-                new_node.cars[car.name].coord2[1] += j - right
-                new_node.cost += j-right
+                distance_travelled = j - right
+                new_node.cars[car.name].coord1[1] += distance_travelled
+                new_node.cars[car.name].coord2[1] += distance_travelled
+                new_node.cars[car.name].fuel -= distance_travelled
+                new_node.cost += distance_travelled
                 new_node.parent = self
                 moves.append(new_node)
         else: # finding vertical moves
@@ -113,7 +130,7 @@ class Node:
             top = min(car.coord1[0], car.coord2[0])
             bottom = max(car.coord1[0], car.coord2[0])
 
-            for i in range (top - 1, -1, -1): # finding moves upwards
+            for i in range (top - 1, max(-1, top - car.fuel - 1), -1): # finding moves upwards
                 if self.board[i][j] != '.':
                     break
                 new_node = deepcopy(self)
@@ -124,12 +141,14 @@ class Node:
                         to_put-=1
                     else:
                         new_node.board[target][j] = '.'
-                new_node.cars[car.name].coord1[0] -= top - i
-                new_node.cars[car.name].coord2[0] -= top - i
-                new_node.cost += top - i
+                distance_travelled = top - i
+                new_node.cars[car.name].coord1[0] -= distance_travelled
+                new_node.cars[car.name].coord2[0] -= distance_travelled
+                new_node.cars[car.name].fuel -= distance_travelled
+                new_node.cost += distance_travelled
                 new_node.parent = self
                 moves.append(new_node)
-            for i in range (bottom + 1, n): # finding moves downwards
+            for i in range (bottom + 1, min(n, bottom + car.fuel + 1)): # finding moves downwards
                 if self.board[i][j] != '.':
                     break
                 new_node = deepcopy(self)
@@ -140,9 +159,11 @@ class Node:
                         to_put-=1
                     else:
                         new_node.board[target][j] = '.'
-                new_node.cars[car.name].coord1[0] += i - bottom
-                new_node.cars[car.name].coord2[0] += i - bottom
-                new_node.cost += i - bottom
+                distance_travelled = i - bottom
+                new_node.cars[car.name].coord1[0] += distance_travelled
+                new_node.cars[car.name].coord2[0] += distance_travelled
+                new_node.cars[car.name].fuel -= distance_travelled
+                new_node.cost += distance_travelled
                 new_node.parent = self
                 moves.append(new_node)
 

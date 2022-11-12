@@ -32,9 +32,8 @@ def parse_file(file_name):
 
     return nodes
 
-
 if __name__ == '__main__':
-    test_root_nodes = parse_file('sample_input_1.txt')
+    test_root_nodes = parse_file('input.txt')
 
     print(test_root_nodes[3])
     solution = uniform_cost_search(test_root_nodes[3])
