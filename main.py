@@ -1,19 +1,25 @@
 from uniform_cost_search import  uniform_cost_search
 from node import Node
 
-def parse_matrix(matrix_line):
-    ret = [[0]*6 for i in range(6)] ;
+def parse_line(line):
+    board = [[0]*6 for i in range(6)] ;
     cur = 0;
 
     for i in range(6):
         for j in range(6):
-            ret[i][j] = matrix_line[cur];
+            board[i][j] = line[cur];
             cur += 1
 
-    return ret;
+    fuel_levels = {}
+    line_split = line.split(' ')
+    for i in range(1, len(line_split)):
+        string = line_split[i]
+        fuel_levels[string[0]] = int(string[1])
+
+    return Node(board, None, 0, fuel_levels)
 
 def parse_file(file_name):
-    matrices = [];
+    nodes = [];
 
     file1 = open(file_name, 'r')
     lines = file1.readlines()
@@ -22,16 +28,14 @@ def parse_file(file_name):
         if line == '\n' or line[0] == '#':
             continue
 
-        matrices.append(parse_matrix(line))
+        nodes.append(parse_line(line))
 
-    return matrices
+    return nodes
 
 
 if __name__ == '__main__':
-    test_boards = parse_file('sample_input_1.txt')
+    test_root_nodes = parse_file('sample_input_1.txt')
 
-    root_node = Node(test_boards[0], None, 0, {})
-    print (root_node)
-
-    solution = uniform_cost_search(root_node)
+    print(test_root_nodes[3])
+    solution = uniform_cost_search(test_root_nodes[3])
     print(solution)

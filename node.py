@@ -9,9 +9,8 @@ class Node:
         self.board = board
         self.parent = parent
         self.cost = cost
-        self.fuel_levels = fuel_levels
 
-        self.generate_cars()
+        self.generate_cars(fuel_levels)
 
     def __eq__(self, other):
         self.cost == other.cost
@@ -31,7 +30,7 @@ class Node:
     def __ge__(self, other):
         self.cost <= other.cost
 
-    def generate_cars(self):
+    def generate_cars(self, fuel_levels):
         found_cars = []
 
         n = len(self.board) # should be 6
@@ -40,15 +39,17 @@ class Node:
                 if self.board[i][j] == '.' or self.board[i][j] in found_cars:
                     continue
 
+                fuel = fuel_levels[self.board[i][j]] if self.board[i][j] in fuel_levels else 100
+
                 if j != n - 1 and self.board[i][j] == self.board[i][j+1]: # horizontal car
                     for k in range (j, n): # finding end of car
                         if k == n - 1 or self.board[i][k] != self.board[i][k+1]:
-                            self.cars[self.board[i][j]] = Car(self.board[i][j], [i, j], [i, k], True)
+                            self.cars[self.board[i][j]] = Car(self.board[i][j], [i, j], [i, k], True, fuel)
                             break
                 else: # must be a vertical car
                     for k in range (i, n): # finding end of car
                         if k == n - 1 or self.board[k][j] != self.board[k+1][j]:
-                            self.cars[self.board[i][j]] = Car(self.board[i][j], [i, j], [k, j], False)
+                            self.cars[self.board[i][j]] = Car(self.board[i][j], [i, j], [k, j], False, fuel)
                             break
 
                 found_cars.append(self.board[i][j])
