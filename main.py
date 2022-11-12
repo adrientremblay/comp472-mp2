@@ -35,6 +35,13 @@ def parse_file(file_name):
 if __name__ == '__main__':
     test_root_nodes = parse_file('input.txt')
 
-    print(test_root_nodes[3])
-    solution = uniform_cost_search(test_root_nodes[3])
-    print(solution)
+    tests_to_run = [0] # if empty then all root_nodes will be tested
+
+    for i in range(len(test_root_nodes)):
+        if len(tests_to_run) != 0 and not i in tests_to_run:
+            continue
+
+        node_to_test = test_root_nodes[i]
+        print(node_to_test)
+        solution = uniform_cost_search(node_to_test)
+        print(solution)
