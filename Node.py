@@ -48,6 +48,7 @@ class Node:
 
     def generate_moves_for_car(self, car):
         moves = []
+        n = len(self.board) # should be 6
 
         # finding horizontal moves
         if car.horizontal:
@@ -56,8 +57,8 @@ class Node:
             right = max(car.coord1[1], car.coord2[1])
 
             # finding moves to the left
-            for j in range (left - 1, 0, -1):
-                if j <= 0 or self.board[i][j] != '.':
+            for j in range (left - 1, -1, -1):
+                if self.board[i][j] != '.':
                     break
                 new_node = deepcopy(self)
                 to_put = right - left + 1
@@ -72,6 +73,25 @@ class Node:
                 new_node.cost += left - j
                 new_node.parent = self
                 moves.append(new_node)
+
+            # finding moves to the right
+            for j in range (right + 1, n):
+                if self.board[i][j] != '.':
+                    break
+                new_node = deepcopy(self)
+                to_put = right - left + 1
+                for target in range(j, left-1, -1):
+                    if to_put > 0:
+                        new_node.board[i][target] = car.name
+                        to_put-=1
+                    else:
+                        new_node.board[i][target] = '.'
+                new_node.cars[car.name].coord1[1] += j - right
+                new_node.cars[car.name].coord2[1] += j - right
+                new_node.cost += j-right
+                new_node.parent = self
+                moves.append(new_node)
+
         #else:
 
         return moves
