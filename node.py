@@ -1,4 +1,6 @@
 from copy import deepcopy
+from filecmp import cmp
+
 from car import Car
 
 class Node:
@@ -10,6 +12,24 @@ class Node:
         self.fuel_levels = fuel_levels
 
         self.generate_cars()
+
+    def __eq__(self, other):
+        self.cost == other.cost
+
+    def __ne__(self, other):
+        self.cost != other.cost
+
+    def __lt__(self, other):
+        self.cost < other.cost
+
+    def __gt__(self, other):
+        self.cost < other.cost
+
+    def __le__(self, other):
+        self.cost <= other.cost
+
+    def __ge__(self, other):
+        self.cost <= other.cost
 
     def generate_cars(self):
         found_cars = []
@@ -34,7 +54,7 @@ class Node:
                 found_cars.append(self.board[i][j])
 
     def is_goal_state(self):
-        return self.board_state[2][5] == "A" and self.board_state[2][4] == "A"
+        return self.board[2][5] == "A" and self.board[2][4] == "A"
 
     def generate_moves(self):
         moves = []
