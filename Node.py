@@ -23,12 +23,12 @@ class Node:
                 if j != n - 1 and self.board[i][j] == self.board[i][j+1]: # horizontal car
                     for k in range (j, n): # finding end of car
                         if k == n - 1 or self.board[i][k] != self.board[i][k+1]:
-                            self.cars[self.board[i][j]] = Car(self.board[i][j], [i, j], [i, k], True, self.board)
+                            self.cars[self.board[i][j]] = Car(self.board[i][j], [i, j], [i, k], True)
                             break
                 else: # must be a vertical car
                     for k in range (i, n): # finding end of car
                         if k == n - 1 or self.board[k][j] != self.board[k+1][j]:
-                            self.cars[self.board[i][j]] = Car(self.board[i][j], [i, j], [k, j], False, self.board)
+                            self.cars[self.board[i][j]] = Car(self.board[i][j], [i, j], [k, j], False)
                             break
 
                 found_cars.append(self.board[i][j])
@@ -48,16 +48,14 @@ class Node:
 
     def generate_moves_for_car(self, car):
         moves = []
-        n = len(self.board) # should be 6
 
-        # finding horizontal moves
-        if car.horizontal:
+        n = len(self.board) # should be 6
+        if car.horizontal: # finding horizontal moves
             i = car.coord1[0]
             left = min(car.coord1[1], car.coord2[1])
             right = max(car.coord1[1], car.coord2[1])
 
-            # finding moves to the left
-            for j in range (left - 1, -1, -1):
+            for j in range (left - 1, -1, -1): # finding moves to the left
                 if self.board[i][j] != '.':
                     break
                 new_node = deepcopy(self)
@@ -74,8 +72,7 @@ class Node:
                 new_node.parent = self
                 moves.append(new_node)
 
-            # finding moves to the right
-            for j in range (right + 1, n):
+            for j in range (right + 1, n): # finding moves to the right
                 if self.board[i][j] != '.':
                     break
                 new_node = deepcopy(self)
@@ -91,8 +88,27 @@ class Node:
                 new_node.cost += j-right
                 new_node.parent = self
                 moves.append(new_node)
+        else: # finding vertical moves
+            j = car.coord1[1]
+            top = min(car.coord1[0], car.coord2[0])
+            bottom = max(car.coord1[0], car.coord2[0])
 
-        #else:
+            for i in range (top - 1, -1, -1): # finding moves upwards
+                if self.board[i][j] != '.':
+                    break
+                new_node = deepcopy(self)
+                to_put = bottom - top + 1
+                for target in range(i, bottom+1):
+                    if to_put > 0:
+                        new_node.board[target][j] = car.name
+                        to_put-=1
+                    else:
+                        new_node.board[target][j] = '.'
+                new_node.cars[car.name].coord1[0] -= top - i
+                new_node.cars[car.name].coord2[0] -= top - i
+                new_node.cost += top - i
+                new_node.parent = self
+                moves.append(new_node)
 
         return moves
 
@@ -111,11 +127,11 @@ class Node:
         return ret
 
     def __repr__(self):
-        ret = 'NODE\n'
-        ret += 'board\n:'
+        ret = '    NODE...\n'
+        ret += 'board:\n'
         ret += self.board_to_string()
         ret += 'cars:\n'
-        ret += self.cars.__repr__()
+        ret += self.cars.__repr__() + '\n'
         return ret
 
 #Counts how many vehicles are in the way of the ambulance

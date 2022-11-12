@@ -30,7 +30,7 @@ def parse_file(file_name):
 if __name__ == '__main__':
     matrices = parse_file('sample_input_1.txt')
 
-    root_node = Node(matrices[3], None, 0, {})
+    root_node = Node(matrices[0], None, 0, {})
     print (root_node)
 
     children = root_node.generate_moves()
