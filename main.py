@@ -1,6 +1,9 @@
 from uniform_cost_search import  uniform_cost_search
 from node import Node
 from algo_a_astar import algo_a_astar
+
+DEBUG = True
+
 import heuristics
 def parse_line(line):
     board = [[0]*6 for i in range(6)] ;
@@ -34,7 +37,7 @@ def parse_file(file_name):
     return nodes
 #
 def create_search_file(search_list, search_algo_name, test_number, heuristic_name="h1"):
-    file_name = search_algo_name
+    file_name = "output/" + search_algo_name
     if search_algo_name != "ucs":
         file_name += "-" + heuristic_name
     file_name += "-search-" + str(test_number) + ".txt"
@@ -43,8 +46,11 @@ def create_search_file(search_list, search_algo_name, test_number, heuristic_nam
         message = "" + str(entry[0]) + " " + str(entry[1]) + " " + str(entry[2]) + " "
         # TODO: Extract this to a method
         for i in range(0,6):
+            if DEBUG:
+                message+="\n"
             for j in range(0, 6):
                 message += entry[3][i][j]
+
         search_file.write(message + "\n")
     search_file.close()
 
