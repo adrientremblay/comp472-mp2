@@ -1,6 +1,6 @@
 from copy import deepcopy
 from filecmp import cmp
-
+import heuristics
 from car import Car
 
 class Node:
@@ -9,26 +9,26 @@ class Node:
         self.board = board
         self.parent = parent
         self.cost = cost
-
         self.generate_cars(fuel_levels)
 
     def __eq__(self, other):
-        self.cost == other.cost
+        return self.cost == other.cost
 
     def __ne__(self, other):
-        self.cost != other.cost
+        return self.cost != other.cost
 
     def __lt__(self, other):
-        self.cost < other.cost
+        return self.cost < other.cost
 
     def __gt__(self, other):
-        self.cost < other.cost
+        return self.cost < other.cost
 
     def __le__(self, other):
-        self.cost <= other.cost
+        return self.cost <= other.cost
 
     def __ge__(self, other):
-        self.cost <= other.cost
+        return self.cost <= other.cost
+
 
     def generate_cars(self, fuel_levels):
         found_cars = []
@@ -56,6 +56,7 @@ class Node:
 
     def is_goal_state(self):
         return self.board[2][5] == "A" and self.board[2][4] == "A"
+
 
     def generate_moves(self):
         moves = []

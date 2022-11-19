@@ -1,6 +1,7 @@
 from uniform_cost_search import  uniform_cost_search
 from node import Node
-
+from algo_a_astar import algo_a_astar
+import heuristics
 def parse_line(line):
     board = [[0]*6 for i in range(6)] ;
     cur = 0;
@@ -31,11 +32,26 @@ def parse_file(file_name):
         nodes.append(parse_line(line))
 
     return nodes
+#
+def create_search_file(search_list, search_algo_name, test_number, heuristic_name="h1"):
+    file_name = search_algo_name
+    if search_algo_name != "ucs":
+        file_name += "_" + heuristic_name
+    file_name += "_" + str(test_number) + ".txt"
+    search_file = open(file_name, "w")
+    for entry in search_list:
+        message = "" + str(entry[0]) + " " + str(entry[1]) + " " + str(entry[2]) + " "
+        for i in range(0,5):
+            for j in range(0, 5):
+                message += entry[3][i][j]
+        search_file.write(message + "\n")
+    search_file.close()
+
 
 if __name__ == '__main__':
     test_root_nodes = parse_file('input.txt')
 
-    tests_to_run = [0] # if empty then all root_nodes will be tested
+    tests_to_run = [1] # if empty then all root_nodes will be tested
 
     for i in range(len(test_root_nodes)):
         if len(tests_to_run) != 0 and not i in tests_to_run:
@@ -43,5 +59,6 @@ if __name__ == '__main__':
 
         node_to_test = test_root_nodes[i]
         print(node_to_test)
-        solution = uniform_cost_search(node_to_test)
+        solution, search_list = algo_a_astar(node_to_test)
+        create_search_file(search_list=search_list,search_algo_name="algo_a_astar",test_number=1)
         print(solution)
