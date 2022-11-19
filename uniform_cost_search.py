@@ -21,6 +21,6 @@ def uniform_cost_search(start_node):
 
         closed_list.append(next_node[1].board)
         # Todo: F(n) G(n) H(n)
-        search_list.append((next_node[0], next_node[1].cost, next_node[1].board, next_node[1].board))
+        search_list.append((next_node[0], next_node[1].cost, 0, next_node[1].board))
 
     return None, search_list

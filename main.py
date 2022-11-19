@@ -36,13 +36,14 @@ def parse_file(file_name):
 def create_search_file(search_list, search_algo_name, test_number, heuristic_name="h1"):
     file_name = search_algo_name
     if search_algo_name != "ucs":
-        file_name += "_" + heuristic_name
-    file_name += "_" + str(test_number) + ".txt"
+        file_name += "-" + heuristic_name
+    file_name += "-search-" + str(test_number) + ".txt"
     search_file = open(file_name, "w")
     for entry in search_list:
         message = "" + str(entry[0]) + " " + str(entry[1]) + " " + str(entry[2]) + " "
-        for i in range(0,5):
-            for j in range(0, 5):
+        # TODO: Extract this to a method
+        for i in range(0,6):
+            for j in range(0, 6):
                 message += entry[3][i][j]
         search_file.write(message + "\n")
     search_file.close()
