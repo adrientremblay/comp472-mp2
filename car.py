@@ -2,8 +2,6 @@ class Car:
     """
     The purpose of this class is just to make the code more readable. I could have equally used a list of values
     each representing one of these fields.
-
-    TODO: should be turned into a dataclass later maybe
     """
 
     def __init__(self, name, coord1, coord2, horizontal, fuel):

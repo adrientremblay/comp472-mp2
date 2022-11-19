@@ -2,7 +2,6 @@ from node import Node
 from queue import PriorityQueue
 import heuristics
 
-
 def algo_a_astar(start_node, estimator=heuristics.check_heuristic1):
     open_list = PriorityQueue()
     open_list.put((estimator(start_node.board) + start_node.cost, start_node))
@@ -21,5 +20,5 @@ def algo_a_astar(start_node, estimator=heuristics.check_heuristic1):
                 open_list.put((estimator(child_node.board) + child_node.cost, child_node))
 
         closed_list.append(next_node[1].board)
-        search_list.append((next_node[0], next_node[1].cost, estimator(next_node[1].board) , next_node[1].board))
+        search_list.append((next_node[0], next_node[1].cost, estimator(next_node[1].board), next_node[1].board))
     return None, search_list

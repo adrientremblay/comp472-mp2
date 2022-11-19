@@ -51,7 +51,7 @@ def create_search_file(search_list, search_algo_name, test_number, heuristic_nam
 if __name__ == '__main__':
     test_root_nodes = parse_file('input.txt')
 
-    tests_to_run = [1] # if empty then all root_nodes will be tested
+    tests_to_run = [0] # if empty then all root_nodes will be tested
 
     for i in range(len(test_root_nodes)):
         if len(tests_to_run) != 0 and not i in tests_to_run:
@@ -59,6 +59,8 @@ if __name__ == '__main__':
 
         node_to_test = test_root_nodes[i]
         print(node_to_test)
-        solution, search_list = algo_a_astar(node_to_test)
-        create_search_file(search_list=search_list,search_algo_name="algo_a_astar",test_number=1)
+        solution, search_list = uniform_cost_search(node_to_test)
+        create_search_file(search_list=search_list, search_algo_name="ucs",test_number=i+1)
+        # solution, search_list = algo_a_astar(node_to_test)
+        # create_search_file(search_list=search_list,search_algo_name="algo_a_astar",test_number=i+1)
         print(solution)

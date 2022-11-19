@@ -111,18 +111,22 @@ class Node:
             for j in range (right + 1, min(n, right + car.fuel + 1)): # finding moves to the right
                 if self.board[i][j] != '.':
                     break
+                valet_service = car.name != 'A' and i == 2 and j == 5 # car removal detection
                 new_node = deepcopy(self)
                 to_put = right - left + 1
                 for target in range(j, left-1, -1):
-                    if to_put > 0:
+                    if not valet_service and to_put > 0:
                         new_node.board[i][target] = car.name
                         to_put-=1
                     else:
                         new_node.board[i][target] = '.'
                 distance_travelled = j - right
-                new_node.cars[car.name].coord1[1] += distance_travelled
-                new_node.cars[car.name].coord2[1] += distance_travelled
-                new_node.cars[car.name].fuel -= distance_travelled
+                if valet_service:
+                    del new_node.cars[car.name]
+                else:
+                    new_node.cars[car.name].coord1[1] += distance_travelled
+                    new_node.cars[car.name].coord2[1] += distance_travelled
+                    new_node.cars[car.name].fuel -= distance_travelled
                 new_node.cost += distance_travelled
                 new_node.parent = self
                 moves.append(new_node)
