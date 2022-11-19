@@ -45,11 +45,24 @@ def create_search_file(search_list, search_algo_name, test_number, heuristic_nam
     for entry in search_list:
         message = "" + str(entry[0]) + " " + str(entry[1]) + " " + str(entry[2]) + " "
         # TODO: Extract this to a method
+        board = entry[3].board
         for i in range(0,6):
             if DEBUG:
                 message+="\n"
             for j in range(0, 6):
-                message += entry[3][i][j]
+                message += board[i][j]
+
+        if DEBUG:
+            message+="\n"
+
+        for key in entry[3].cars:
+            car = entry[3].cars[key]
+            if car.fuel == 100:
+                continue
+            message += " " + car.name + str(car.fuel)
+
+        if DEBUG:
+            message+="\n"
 
         search_file.write(message + "\n")
     search_file.close()
@@ -67,7 +80,7 @@ if __name__ == '__main__':
         node_to_test = test_root_nodes[i]
         print(node_to_test)
         solution, search_list = uniform_cost_search(node_to_test)
-        create_search_file(search_list=search_list, search_algo_name="ucs",test_number=i+1)
+        create_search_file(search_list=search_list, search_algo_name="ucs", test_number=i+1)
         # solution, search_list = algo_a_astar(node_to_test)
         # create_search_file(search_list=search_list,search_algo_name="algo_a_astar",test_number=i+1)
         print(solution)

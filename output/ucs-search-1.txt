@@ -6,13 +6,15 @@ GDDK.M
 GH.KL.
 GHFFL.
 
-1 1 0
+
+1 1 0 
 BBIJ..
 ..IJCC
 ..IAA.
 GDDK.M
 GH.KLM
 GHFFL.
+ M99
 
 1 1 0 
 BBIJ..
@@ -21,6 +23,7 @@ G.IAAM
 GDDK.M
 GH.KL.
 .HFFL.
+ G99
 
 1 1 0 
 BBIJ..
@@ -29,6 +32,7 @@ BBIJ..
 GDDKLM
 GH.KL.
 GHFF..
+ L99
 
 1 1 0 
 BBIJ..
@@ -37,6 +41,7 @@ BBIJ..
 GDDK..
 GH.KLM
 GHFFLM
+ M98
 
 1 1 0 
 BBIJ..
@@ -45,6 +50,7 @@ G.IAAM
 GDDK.M
 .H.KL.
 .HFFL.
+ G98
 
 2 2 0 
 BBIJ..
@@ -53,6 +59,7 @@ G.IAA.
 GDDK.M
 GH.KLM
 .HFFL.
+ M99 G99
 
 2 2 0 
 BBIJ..
@@ -61,6 +68,8 @@ BBIJ..
 GDDKLM
 GH.KLM
 GHFF..
+ M99 L99
+
 2 2 0 
 BBIJ..
 G.IJCC
@@ -68,6 +77,8 @@ G.IAAM
 GDDKLM
 .H.KL.
 .HFF..
+ G98 L99
+
 2 2 0 
 BBIJ..
 ..IJCC
@@ -75,6 +86,8 @@ BBIJ..
 GDDKL.
 GH.KLM
 GHFF.M
+ M98 L99
+
 2 2 0 
 BBIJ..
 G.IJCC
@@ -82,6 +95,8 @@ G.IAAM
 GDDKLM
 .H.KL.
 .HFF..
+ G98 L99
+
 2 2 0 
 BBIJ..
 ..IJCC
@@ -89,6 +104,8 @@ G.IAAM
 GDDKLM
 GH.KL.
 .HFF..
+ G99 L99
+
 2 2 0 
 BBIJ..
 ..IJCC
@@ -96,6 +113,8 @@ BBIJ..
 GDDK..
 GH.KLM
 GHFFLM
+ M98
+
 2 2 0 
 BBIJ..
 ..IJCC
@@ -103,6 +122,8 @@ BBIJ..
 GDDKL.
 GH.KLM
 GHFF.M
+ M98 L99
+
 2 2 0 
 BBIJ..
 ..IJCC
@@ -110,3 +131,14 @@ BBIJ..
 GDDKLM
 GH.KLM
 GHFF..
+ M99 L99
+
+2 2 0 
+BBIJ..
+..IJCC
+..I.AA
+GDDK.M
+GH.KLM
+GHFFL.
+ A99 M99
+

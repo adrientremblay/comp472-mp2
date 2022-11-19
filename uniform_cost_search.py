@@ -11,6 +11,7 @@ def uniform_cost_search(start_node):
         next_node = open_list.get()
 
         if next_node[1].is_goal_state():
+            search_list.append((next_node[0], next_node[1].cost, 0, next_node[1]))
             return next_node, search_list
 
         for child_node in next_node[1].generate_moves():
@@ -21,6 +22,6 @@ def uniform_cost_search(start_node):
 
         closed_list.append(next_node[1].board)
         # Todo: F(n) G(n) H(n)
-        search_list.append((next_node[0], next_node[1].cost, 0, next_node[1].board))
+        search_list.append((next_node[0], next_node[1].cost, 0, next_node[1]))
 
     return None, search_list
