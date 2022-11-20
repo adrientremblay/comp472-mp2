@@ -6,6 +6,20 @@ class FifoPriorityQueue:
     def __init__(self):
         self.queue = [] # list of tuples of format (priority, item)
 
+    def put_with_replacement(self, priority, item):
+        for pair in self.queue:
+            if pair[1] != item:
+                continue
+
+            if pair[0] > priority: # remove the same item but with a higher priority (we're gonna add the lower priority one later)
+                self.queue.remove(pair)
+                break
+            else: # we want to keep the lower priority version
+                return
+
+        self.put(priority, item)
+
+
     def put(self, priority, item):
         n = len(self.queue)
 
