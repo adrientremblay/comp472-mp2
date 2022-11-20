@@ -1,5 +1,6 @@
-from uniform_cost_search import  uniform_cost_search
+from uniform_cost_search import uniform_cost_search
 from node import Node
+from fifo_priority_queue import FifoPriorityQueue
 from algo_a_astar import algo_a_astar
 
 DEBUG = True
@@ -44,16 +45,15 @@ def create_search_file(search_list, search_algo_name, test_number, heuristic_nam
     search_file = open(file_name, "w")
     for entry in search_list:
         message = "" + str(entry[0]) + " " + str(entry[1]) + " " + str(entry[2]) + " "
+        if DEBUG:
+            message+="\n"
         # TODO: Extract this to a method
         board = entry[3].board
         for i in range(0,6):
-            if DEBUG:
-                message+="\n"
             for j in range(0, 6):
                 message += board[i][j]
-
-        if DEBUG:
-            message+="\n"
+            if DEBUG:
+                message+="\n"
 
         for key in entry[3].cars:
             car = entry[3].cars[key]
@@ -69,6 +69,18 @@ def create_search_file(search_list, search_algo_name, test_number, heuristic_nam
 
 
 if __name__ == '__main__':
+
+    testQueue = FifoPriorityQueue()
+    testQueue.put(1, "first")
+    testQueue.put(1, "second")
+    testQueue.put(2, "fourth")
+    testQueue.put(1, "third")
+
+    print(testQueue.get())
+    print(testQueue.get())
+    print(testQueue.get())
+    print(testQueue.get())
+
     test_root_nodes = parse_file('input.txt')
 
     tests_to_run = [0] # if empty then all root_nodes will be tested
