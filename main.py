@@ -69,18 +69,6 @@ def create_search_file(search_list, search_algo_name, test_number, heuristic_nam
 
 
 if __name__ == '__main__':
-
-    testQueue = FifoPriorityQueue()
-    testQueue.put(1, "first")
-    testQueue.put(1, "second")
-    testQueue.put(2, "fourth")
-    testQueue.put(1, "third")
-
-    print(testQueue.get())
-    print(testQueue.get())
-    print(testQueue.get())
-    print(testQueue.get())
-
     test_root_nodes = parse_file('input.txt')
 
     tests_to_run = [0] # if empty then all root_nodes will be tested

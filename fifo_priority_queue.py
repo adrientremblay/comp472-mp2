@@ -17,7 +17,7 @@ class FifoPriorityQueue:
         self.queue.append((priority, item))
 
     def get(self):
-        return self.queue.pop(0)[1]
+        return self.queue.pop(0)
 
     def is_empty(self):
         return len(self.queue) == 0
