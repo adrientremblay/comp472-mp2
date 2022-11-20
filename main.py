@@ -1,9 +1,8 @@
 from uniform_cost_search import uniform_cost_search
 from node import Node
-from fifo_priority_queue import FifoPriorityQueue
 from algo_a_astar import algo_a_astar
 
-DEBUG = True
+DEBUG = False
 
 import heuristics
 def parse_line(line):
