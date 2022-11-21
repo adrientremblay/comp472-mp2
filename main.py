@@ -1,7 +1,10 @@
 from uniform_cost_search import uniform_cost_search
+from algo_a_astar import algo_a_astar
 from node import Node
 
 DEBUG = False
+TEST_UCS = False
+TEST_ALGO_ASTAR = True
 
 import heuristics
 def parse_line(line):
@@ -45,7 +48,6 @@ def create_search_file(search_list, search_algo_name, test_number, heuristic_nam
         message = "" + str(entry[0]) + " " + str(entry[1]) + " " + str(entry[2]) + " "
         if DEBUG:
             message+="\n"
-        # TODO: Extract this to a method
         board = entry[3].board
         for i in range(0,6):
             for j in range(0, 6):
@@ -69,16 +71,29 @@ def create_search_file(search_list, search_algo_name, test_number, heuristic_nam
 if __name__ == '__main__':
     test_root_nodes = parse_file('input.txt')
 
-    tests_to_run = [5] # if empty then all root_nodes will be tested
+    tests_to_run = [0] # if empty then all root_nodes will be tested
 
     for i in range(len(test_root_nodes)):
         if len(tests_to_run) != 0 and not i in tests_to_run:
             continue
 
+        print("Node To Test:")
+        print()
         node_to_test = test_root_nodes[i]
         print(node_to_test)
-        solution, search_list = uniform_cost_search(node_to_test)
-        create_search_file(search_list=search_list, search_algo_name="ucs", test_number=i+1)
-        # solution, search_list = algo_a_astar(node_to_test)
-        # create_search_file(search_list=search_list,search_algo_name="algo_a_astar",test_number=i+1)
-        print(solution)
+
+        if TEST_UCS:
+            print("Running Uniform Cost Search")
+            solution, search_list = uniform_cost_search(node_to_test)
+            create_search_file(search_list=search_list, search_algo_name="ucs", test_number=i+1)
+            print("Final (Solved) Node:")
+            print()
+            print(solution)
+
+        if TEST_ALGO_ASTAR:
+            print("Running A Star Search")
+            solution, search_list = algo_a_astar(node_to_test)
+            create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1)
+            print("Final (Solved) Node:")
+            print()
+            print(solution)
