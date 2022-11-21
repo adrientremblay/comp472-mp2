@@ -71,7 +71,7 @@ def create_search_file(search_list, search_algo_name, test_number, heuristic_nam
 if __name__ == '__main__':
     test_root_nodes = parse_file('input.txt')
 
-    tests_to_run = [0] # if empty then all root_nodes will be tested
+    tests_to_run = [2,3,4,5] # if empty then all root_nodes will be tested
 
     for i in range(len(test_root_nodes)):
         if len(tests_to_run) != 0 and not i in tests_to_run:

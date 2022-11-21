@@ -12,14 +12,14 @@ def algo_a_astar(start_node, estimator=heuristics.check_heuristic1):
         next_pair = open_list.get()
 
         if next_pair[1].is_goal_state():
-            search_list.append((next_pair[0], next_pair[1].cost, 0, next_pair[1]))
+            search_list.append((next_pair[0], next_pair[1].cost, estimator(next_pair[1].board), next_pair[1]))
             return next_pair, search_list
 
         for child_node in next_pair[1].generate_moves():
             if child_node.board in closed_list:
                 continue
 
-            open_list.put(estimator(child_node.board) + child_node.cost, child_node)
+            open_list.put_with_replacement(estimator(child_node.board) + child_node.cost, child_node)
 
         closed_list.append(next_pair[1].board)
         search_list.append((next_pair[0], next_pair[1].cost, estimator(next_pair[1].board), next_pair[1]))

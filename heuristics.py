@@ -25,11 +25,8 @@ def check_heuristic2(state):
     return count
 
 
-def check_heuristic3(state, multipler = 1):
-    return check_heuristic1(state) * multipler
-
-
-
+def check_heuristic3(state, multiplier = 1):
+    return check_heuristic1(state) * multiplier
 
 #Temporary implementation of
 def check_heuristic4(state):
