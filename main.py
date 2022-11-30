@@ -1,10 +1,12 @@
 from uniform_cost_search import uniform_cost_search
 from algo_a_astar import algo_a_astar
 from node import Node
+from GBFS import GBFS_algo
 
 DEBUG = False
 TEST_UCS = False
-TEST_ALGO_ASTAR = True
+TEST_ALGO_ASTAR = False
+TEST_GBFS = True
 
 import heuristics
 def parse_line(line):
@@ -93,6 +95,14 @@ if __name__ == '__main__':
         if TEST_ALGO_ASTAR:
             print("Running A Star Search")
             solution, search_list = algo_a_astar(node_to_test)
+            create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1)
+            print("Final (Solved) Node:")
+            print()
+            print(solution)
+
+        if TEST_GBFS:
+            print("Running Greedy best first search")
+            solution, search_list = GBFS_algo(node_to_test)
             create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1)
             print("Final (Solved) Node:")
             print()
