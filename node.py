@@ -14,7 +14,7 @@ class Node:
         self.move_fuel = 0 # default
 
     def __eq__(self, other):
-        return self.board == other.board
+        return other != None and self.board == other.board
 
     def generate_cars(self, fuel_levels):
         found_cars = []
@@ -187,4 +187,11 @@ class Node:
         ret += self.board_to_string()
         ret += 'cars:\n'
         ret += self.cars.__repr__() + '\n'
+        return ret
+
+    def to_line(self):
+        ret = ''
+        for i in range(6):
+            for j in range(6):
+                ret += self.board[i][j]
         return ret
