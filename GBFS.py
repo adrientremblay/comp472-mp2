@@ -2,9 +2,9 @@ from node import Node
 from fifo_priority_queue import FifoPriorityQueue
 import heuristics
 
-def algo_a_astar(start_node, estimator=heuristics.check_heuristic1, mult=1):
+def GBFS_algo(start_node, estimator=heuristics.check_heuristic1, mult=1):
     open_list = FifoPriorityQueue()
-    open_list.put(estimator(start_node,multiplier=mult) + start_node.cost, start_node)
+    open_list.put(estimator(start_node,multiplier=mult) , start_node)
     closed_list = []
     search_list = []
 
@@ -19,7 +19,7 @@ def algo_a_astar(start_node, estimator=heuristics.check_heuristic1, mult=1):
             if child_node.board in closed_list:
                 continue
 
-            open_list.put_with_replacement(estimator(child_node,multiplier=mult) + child_node.cost, child_node)
+            open_list.put_with_replacement(estimator(child_node,multiplier=mult), child_node)
 
         closed_list.append(next_pair[1].board)
         search_list.append((next_pair[0], next_pair[1].cost, estimator(next_pair[1],multiplier=mult), next_pair[1]))
