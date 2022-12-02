@@ -10,6 +10,8 @@ class Node:
         self.parent = parent
         self.cost = cost
         self.generate_cars(fuel_levels)
+        self.move_name = "" # default
+        self.move_fuel = 0 # default
 
     def __eq__(self, other):
         return self.board == other.board
@@ -40,7 +42,6 @@ class Node:
 
     def is_goal_state(self):
         return self.board[2][5] == "A" and self.board[2][4] == "A"
-
 
     def generate_moves(self):
         moves = []
@@ -91,6 +92,8 @@ class Node:
                 new_node.cars[car.name].fuel -= distance_travelled
                 new_node.cost += 1
                 new_node.parent = self
+                new_node.move_name = car.name + " left " + str(distance_travelled)
+                new_node.move_fuel = car.fuel
                 moves.append(new_node)
             for j in range (right + 1, min(n, right + car.fuel + 1)): # finding moves to the right
                 if self.board[i][j] != '.':
@@ -113,6 +116,8 @@ class Node:
                     new_node.cars[car.name].fuel -= distance_travelled
                 new_node.cost += 1
                 new_node.parent = self
+                new_node.move_name = car.name + " right " + str(distance_travelled)
+                new_node.move_fuel = car.fuel
                 moves.append(new_node)
         else: # finding vertical moves
             j = car.coord1[1]
@@ -136,6 +141,8 @@ class Node:
                 new_node.cars[car.name].fuel -= distance_travelled
                 new_node.cost += 1
                 new_node.parent = self
+                new_node.move_name = car.name + " up " + str(distance_travelled)
+                new_node.move_fuel = car.fuel
                 moves.append(new_node)
             for i in range (bottom + 1, min(n, bottom + car.fuel + 1)): # finding moves downwards
                 if self.board[i][j] != '.':
@@ -154,6 +161,8 @@ class Node:
                 new_node.cars[car.name].fuel -= distance_travelled
                 new_node.cost += 1
                 new_node.parent = self
+                new_node.move_name = car.name + " down " + str(distance_travelled)
+                new_node.move_fuel = car.fuel
                 moves.append(new_node)
 
         return moves

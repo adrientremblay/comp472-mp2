@@ -3,6 +3,7 @@ from algo_a_astar import algo_a_astar
 from node import Node
 from GBFS import GBFS_algo
 from time import perf_counter
+import csv
 
 DEBUG = False
 TEST_UCS = True
@@ -95,8 +96,6 @@ def create_solution_file(search_list, search_algo_name, test_number, node_to_tes
 
     soultion_file.write(sol_txt)
     soultion_file.close()
-
-
 
 if __name__ == '__main__':
     test_root_nodes, lines = parse_file('input.txt')
