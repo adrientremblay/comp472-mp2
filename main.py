@@ -4,13 +4,27 @@ from node import Node
 from GBFS import GBFS_algo
 from time import perf_counter
 import csv
+import heuristics
 
 DEBUG = False
 TEST_UCS = True
 TEST_ALGO_ASTAR = False
 TEST_GBFS = False
+GENERATE_SEARCH_FILE = False
+GENERATE_SOLUTION_FILE = False
+GENERATE_CSV = True
 
-import heuristics
+def heuristicNameFromHeuristic(heuristic):
+    if (heuristic == heuristics.check_heuristic1()):
+        return "h1"
+    elif (heuristic == heuristics.check_heuristic2()):
+        return "h2"
+    elif (heuristic == heuristics.check_heuristic3()):
+        return "h3"
+    elif (heuristic == heuristics.check_heuristic4()):
+        return "h4"
+    return None
+
 def parse_line(line):
     board = [[0]*6 for i in range(6)] ;
     cur = 0;
@@ -75,8 +89,6 @@ def create_search_file(search_list, search_algo_name, test_number, heuristic_nam
         search_file.write(message + "\n")
     search_file.close()
 
-
-
 def create_solution_file(search_list, search_algo_name, test_number, node_to_test,lines,solution, eTime, heuristic_name="h1"):
     file_name = "output/" + search_algo_name
     if search_algo_name != "ucs":
@@ -97,10 +109,13 @@ def create_solution_file(search_list, search_algo_name, test_number, node_to_tes
     soultion_file.write(sol_txt)
     soultion_file.close()
 
+
 if __name__ == '__main__':
     test_root_nodes, lines = parse_file('input.txt')
+    tests_to_run = [0] # if empty then all root_nodes will be tested
+    heuristics_to_use = [heuristics.check_heuristic1, heuristics.check_heuristic2, heuristics.check_heuristic3, heuristics.check_heuristic4]
 
-    tests_to_run = [0,1,2,3,4,5] # if empty then all root_nodes will be tested
+    csv_data = []
 
     for i in range(len(test_root_nodes)):
         if len(tests_to_run) != 0 and not i in tests_to_run:
@@ -108,7 +123,6 @@ if __name__ == '__main__':
         print("Node To Test:")
         print()
         node_to_test = test_root_nodes[i]
-       
 
         if TEST_UCS:
             print("Running Uniform Cost Search")
@@ -116,45 +130,87 @@ if __name__ == '__main__':
             start = perf_counter()
             solution, search_list = uniform_cost_search(node_to_test)
             end = perf_counter()
-            create_search_file(search_list=search_list, search_algo_name="ucs", test_number=i+1)
-            create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution[1],eTime= end-start)
+
+            if GENERATE_SEARCH_FILE:
+                create_search_file(search_list=search_list, search_algo_name="ucs", test_number=i+1)
+            if GENERATE_SOLUTION_FILE:
+                create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution[1],eTime= end-start)
+            if GENERATE_CSV:
+                cur = solution[1]
+                solution_length = 0;
+                while cur != None:
+                   cur = cur.parent
+                   solution_length += 1
+                csv_data.append([i, "UCS", "NA", solution_length, len(search_list), end - start])
+
             print("Final (Solved) Node:")
             print()
             print(solution)
 
-        if TEST_ALGO_ASTAR:
-            print("Running A Star Search")
-            start = perf_counter()
-            solution, search_list = algo_a_astar(node_to_test)
-            end = perf_counter()
-            create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1)
-            create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution[1],eTime= end-start)
-            print("Final (Solved) Node:")
-            print()
-            print(solution)
-            #solution, search_list = algo_a_astar(node_to_test, estimator=heuristics.check_heuristic2)
-            #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h2") 
-            #solution, search_list = algo_a_astar(node_to_test, estimator=heuristics.check_heuristic3, mult = 5)
-            #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h3") 
-            #solution, search_list = algo_a_astar(node_to_test, estimator=heuristics.check_heuristic4)
-            #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h4") 
-     
 
         if TEST_GBFS:
-            print("Running Greedy best first search")
-            start = perf_counter()
-            solution, search_list = GBFS_algo(node_to_test)
-            end = perf_counter()
-            create_search_file(search_list=search_list,search_algo_name="gbsf",test_number=i+1)
-            create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution[1],eTime= end-start)
-            print("Final (Solved) Node:")
-            print()
-            print(solution)
-            #solution, search_list = GBFS_algo(node_to_test, estimator=heuristics.check_heuristic2)
-            #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h2") 
-            #solution, search_list = GBFS_algo(node_to_test, estimator=heuristics.check_heuristic3, mult = 5)
-            #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h3") 
-            #solution, search_list = GBFS_algo(node_to_test, estimator=heuristics.check_heuristic4)
-            #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h4") 
-        
+            for heuristic in heuristics_to_use:
+                print("Running Greedy best first search")
+                start = perf_counter()
+                solution, search_list = GBFS_algo(node_to_test, estimator=heuristic)
+                end = perf_counter()
+                if GENERATE_SEARCH_FILE:
+                    create_search_file(search_list=search_list,search_algo_name="gbsf",test_number=i+1)
+                if GENERATE_SOLUTION_FILE:
+                    create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution[1],eTime= end-start)
+                if (GENERATE_CSV):
+                    cur = solution[1]
+                    solution_length = 0;
+                    while cur != None:
+                        cur = cur.parent
+                        solution_length += 1
+                    csv_data.append([i, "GBFS", heuristicNameFromHeuristic(heuristic), solution_length, len(search_list), end - start])
+                print("Final (Solved) Node:")
+                print()
+                print(solution)
+                #solution, search_list = GBFS_algo(node_to_test, estimator=heuristics.check_heuristic2)
+                #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h2")
+                #solution, search_list = GBFS_algo(node_to_test, estimator=heuristics.check_heuristic3, mult = 5)
+                #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h3")
+                #solution, search_list = GBFS_algo(node_to_test, estimator=heuristics.check_heuristic4)
+                #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h4")
+
+        if TEST_ALGO_ASTAR:
+            for heuristic in heuristics_to_use:
+                print("Running A Star Search")
+                start = perf_counter()
+                solution, search_list = algo_a_astar(node_to_test, heuristic)
+                end = perf_counter()
+                if GENERATE_SEARCH_FILE:
+                    create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1)
+                if GENERATE_SOLUTION_FILE:
+                    create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution[1],eTime= end-start)
+                if (GENERATE_CSV):
+                    cur = solution[1]
+                    solution_length = 0;
+                    while cur != None:
+                        cur = cur.parent
+                        solution_length += 1
+                    csv_data.append([i, "A/A*", heuristicNameFromHeuristic(heuristic), solution_length, len(search_list), end - start])
+                print("Final (Solved) Node:")
+                print()
+                print(solution)
+                #solution, search_list = algo_a_astar(node_to_test, estimator=heuristics.check_heuristic2)
+                #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h2")
+                #solution, search_list = algo_a_astar(node_to_test, estimator=heuristics.check_heuristic3, mult = 5)
+                #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h3")
+                #solution, search_list = algo_a_astar(node_to_test, estimator=heuristics.check_heuristic4)
+                #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h4")
+
+    if (GENERATE_CSV):
+        # stuff
+        csv_header = ['Puzzle Number', 'Algorithm', 'Heuristic', 'Length of the Solution', 'Length of the Search Path', 'Execution Time (in seconds)']
+        with open('swag.csv', 'w', encoding='UTF8', newline='') as f:
+            writer = csv.writer(f)
+
+            # write the header
+            writer.writerow(csv_header)
+
+            # write multiple rows
+            writer.writerows(csv_data)
 

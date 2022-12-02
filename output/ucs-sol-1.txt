@@ -1,0 +1,30 @@
+Initial Board Configuration: BBIJ....IJCC..IAAMGDDK.MGH.KL.GHFFL.
+ 
+  | a b c d e f |
+-----------------
+0| B B I J . . |
+1| . . I J C C |
+2| . . I A A M 
+3| G D D K . M |
+4| G H . K L . |
+5| G H F F L . |
+-----------------
+
+Car fuel avalaible: [('A', 100), ('B', 100), ('C', 100), ('D', 100), ('F', 100), ('G', 100), ('H', 100), ('I', 100), ('J', 100), ('K', 100), ('L', 100), ('M', 100)] 
+Runtime: 0.0 seconds 
+Search path length: 7 states
+Solution path length: moves 
+Solution Path length: 
+Solution Path: 
+
+
+  | a b c d e f |
+-----------------
+0| B B I J . . |
+1| . . I J C C |
+2| . . I . A A 
+3| G D D K . M |
+4| G H . K L M |
+5| G H F F L . |
+-----------------
+

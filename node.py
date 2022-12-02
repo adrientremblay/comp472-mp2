@@ -14,7 +14,7 @@ class Node:
         self.move_fuel = 0 # default
 
     def __eq__(self, other):
-        return self.board == other.board
+        return other != None and self.board == other.board
 
     def generate_cars(self, fuel_levels):
         found_cars = []
