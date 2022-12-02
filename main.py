@@ -8,20 +8,20 @@ import heuristics
 
 DEBUG = False
 TEST_UCS = True
-TEST_ALGO_ASTAR = False
-TEST_GBFS = False
+TEST_ALGO_ASTAR = True
+TEST_GBFS = True
 GENERATE_SEARCH_FILE = False
 GENERATE_SOLUTION_FILE = False
 GENERATE_CSV = True
 
 def heuristicNameFromHeuristic(heuristic):
-    if (heuristic == heuristics.check_heuristic1()):
+    if (heuristic == heuristics.check_heuristic1):
         return "h1"
-    elif (heuristic == heuristics.check_heuristic2()):
+    elif (heuristic == heuristics.check_heuristic2):
         return "h2"
-    elif (heuristic == heuristics.check_heuristic3()):
+    elif (heuristic == heuristics.check_heuristic3):
         return "h3"
-    elif (heuristic == heuristics.check_heuristic4()):
+    elif (heuristic == heuristics.check_heuristic4):
         return "h4"
     return None
 
@@ -111,7 +111,9 @@ def create_solution_file(search_list, search_algo_name, test_number, node_to_tes
 
 
 if __name__ == '__main__':
-    test_root_nodes, lines = parse_file('input.txt')
+    #test_root_nodes, lines = parse_file('input.txt')
+    test_root_nodes, lines = parse_file('random_puzzles.txt')
+
     tests_to_run = [0] # if empty then all root_nodes will be tested
     heuristics_to_use = [heuristics.check_heuristic1, heuristics.check_heuristic2, heuristics.check_heuristic3, heuristics.check_heuristic4]
 
@@ -141,7 +143,7 @@ if __name__ == '__main__':
                 while cur != None:
                    cur = cur.parent
                    solution_length += 1
-                csv_data.append([i, "UCS", "NA", solution_length, len(search_list), end - start])
+                csv_data.append([i+1, "UCS", "NA", solution_length, len(search_list), end - start, node_to_test.to_line()])
 
             print("Final (Solved) Node:")
             print()
@@ -164,7 +166,7 @@ if __name__ == '__main__':
                     while cur != None:
                         cur = cur.parent
                         solution_length += 1
-                    csv_data.append([i, "GBFS", heuristicNameFromHeuristic(heuristic), solution_length, len(search_list), end - start])
+                    csv_data.append([i+1, "GBFS", heuristicNameFromHeuristic(heuristic), solution_length, len(search_list), end - start, node_to_test.to_line()])
                 print("Final (Solved) Node:")
                 print()
                 print(solution)
@@ -191,7 +193,7 @@ if __name__ == '__main__':
                     while cur != None:
                         cur = cur.parent
                         solution_length += 1
-                    csv_data.append([i, "A/A*", heuristicNameFromHeuristic(heuristic), solution_length, len(search_list), end - start])
+                    csv_data.append([i+1, "A/A*", heuristicNameFromHeuristic(heuristic), solution_length, len(search_list), end - start, node_to_test.to_line()])
                 print("Final (Solved) Node:")
                 print()
                 print(solution)
@@ -204,7 +206,7 @@ if __name__ == '__main__':
 
     if (GENERATE_CSV):
         # stuff
-        csv_header = ['Puzzle Number', 'Algorithm', 'Heuristic', 'Length of the Solution', 'Length of the Search Path', 'Execution Time (in seconds)']
+        csv_header = ['Puzzle Number', 'Algorithm', 'Heuristic', 'Length of the Solution', 'Length of the Search Path', 'Execution Time (in seconds)', 'Board (not an actual col)']
         with open('swag.csv', 'w', encoding='UTF8', newline='') as f:
             writer = csv.writer(f)
 

@@ -188,3 +188,10 @@ class Node:
         ret += 'cars:\n'
         ret += self.cars.__repr__() + '\n'
         return ret
+
+    def to_line(self):
+        ret = ''
+        for i in range(6):
+            for j in range(6):
+                ret += self.board[i][j]
+        return ret
