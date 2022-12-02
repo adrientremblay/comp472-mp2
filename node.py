@@ -92,7 +92,7 @@ class Node:
                 new_node.cars[car.name].fuel -= distance_travelled
                 new_node.cost += 1
                 new_node.parent = self
-                new_node.move_name = car.name + " left " + distance_travelled
+                new_node.move_name = car.name + " left " + str(distance_travelled)
                 new_node.move_fuel = car.fuel
                 moves.append(new_node)
             for j in range (right + 1, min(n, right + car.fuel + 1)): # finding moves to the right
@@ -116,7 +116,7 @@ class Node:
                     new_node.cars[car.name].fuel -= distance_travelled
                 new_node.cost += 1
                 new_node.parent = self
-                new_node.move_name = car.name + " right " + distance_travelled
+                new_node.move_name = car.name + " right " + str(distance_travelled)
                 new_node.move_fuel = car.fuel
                 moves.append(new_node)
         else: # finding vertical moves
@@ -141,7 +141,7 @@ class Node:
                 new_node.cars[car.name].fuel -= distance_travelled
                 new_node.cost += 1
                 new_node.parent = self
-                new_node.move_name = car.name + " up " + distance_travelled
+                new_node.move_name = car.name + " up " + str(distance_travelled)
                 new_node.move_fuel = car.fuel
                 moves.append(new_node)
             for i in range (bottom + 1, min(n, bottom + car.fuel + 1)): # finding moves downwards
@@ -161,7 +161,7 @@ class Node:
                 new_node.cars[car.name].fuel -= distance_travelled
                 new_node.cost += 1
                 new_node.parent = self
-                new_node.move_name = car.name + " down " + distance_travelled
+                new_node.move_name = car.name + " down " + str(distance_travelled)
                 new_node.move_fuel = car.fuel
                 moves.append(new_node)
 
