@@ -114,7 +114,7 @@ if __name__ == '__main__':
     #test_root_nodes, lines = parse_file('input.txt')
     test_root_nodes, lines = parse_file('random_puzzles.txt')
 
-    tests_to_run = [0] # if empty then all root_nodes will be tested
+    tests_to_run = [] # if empty then all root_nodes will be tested
     heuristics_to_use = [heuristics.check_heuristic1, heuristics.check_heuristic2, heuristics.check_heuristic3, heuristics.check_heuristic4]
 
     csv_data = []
@@ -137,7 +137,7 @@ if __name__ == '__main__':
                 create_search_file(search_list=search_list, search_algo_name="ucs", test_number=i+1)
             if GENERATE_SOLUTION_FILE:
                 create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution[1],eTime= end-start)
-            if GENERATE_CSV:
+            if GENERATE_CSV and solution is not None:
                 cur = solution[1]
                 solution_length = 0;
                 while cur != None:
@@ -160,7 +160,7 @@ if __name__ == '__main__':
                     create_search_file(search_list=search_list,search_algo_name="gbsf",test_number=i+1)
                 if GENERATE_SOLUTION_FILE:
                     create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution[1],eTime= end-start)
-                if (GENERATE_CSV):
+                if GENERATE_CSV and solution is not None:
                     cur = solution[1]
                     solution_length = 0;
                     while cur != None:
@@ -187,7 +187,7 @@ if __name__ == '__main__':
                     create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1)
                 if GENERATE_SOLUTION_FILE:
                     create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution[1],eTime= end-start)
-                if (GENERATE_CSV):
+                if GENERATE_CSV and solution is not None:
                     cur = solution[1]
                     solution_length = 0;
                     while cur != None:
