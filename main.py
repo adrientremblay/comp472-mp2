@@ -137,13 +137,16 @@ if __name__ == '__main__':
                 create_search_file(search_list=search_list, search_algo_name="ucs", test_number=i+1)
             if GENERATE_SOLUTION_FILE:
                 create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution[1],eTime= end-start)
-            if GENERATE_CSV and solution is not None:
-                cur = solution[1]
-                solution_length = 0;
-                while cur != None:
-                   cur = cur.parent
-                   solution_length += 1
-                csv_data.append([i+1, "UCS", "NA", solution_length, len(search_list), end - start, node_to_test.to_line()])
+            if GENERATE_CSV:
+                if solution is None:
+                    csv_data.append([i+1, "UCS", "NA", "NA", "NA", node_to_test.to_line()])
+                else:
+                    cur = solution[1]
+                    solution_length = 0;
+                    while cur != None:
+                       cur = cur.parent
+                       solution_length += 1
+                    csv_data.append([i+1, "UCS", "NA", solution_length, len(search_list), end - start, node_to_test.to_line()])
 
             print("Final (Solved) Node:")
             print()
@@ -160,13 +163,16 @@ if __name__ == '__main__':
                     create_search_file(search_list=search_list,search_algo_name="gbsf",test_number=i+1)
                 if GENERATE_SOLUTION_FILE:
                     create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution[1],eTime= end-start)
-                if GENERATE_CSV and solution is not None:
-                    cur = solution[1]
-                    solution_length = 0;
-                    while cur != None:
-                        cur = cur.parent
-                        solution_length += 1
-                    csv_data.append([i+1, "GBFS", heuristicNameFromHeuristic(heuristic), solution_length, len(search_list), end - start, node_to_test.to_line()])
+                if GENERATE_CSV:
+                    if solution is None:
+                        csv_data.append([i+1, "UCS", "NA", "NA", "NA", node_to_test.to_line()])
+                    else:
+                        cur = solution[1]
+                        solution_length = 0;
+                        while cur != None:
+                            cur = cur.parent
+                            solution_length += 1
+                        csv_data.append([i+1, "GBFS", heuristicNameFromHeuristic(heuristic), solution_length, len(search_list), end - start, node_to_test.to_line()])
                 print("Final (Solved) Node:")
                 print()
                 print(solution)
@@ -187,13 +193,16 @@ if __name__ == '__main__':
                     create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1)
                 if GENERATE_SOLUTION_FILE:
                     create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution[1],eTime= end-start)
-                if GENERATE_CSV and solution is not None:
-                    cur = solution[1]
-                    solution_length = 0;
-                    while cur != None:
-                        cur = cur.parent
-                        solution_length += 1
-                    csv_data.append([i+1, "A/A*", heuristicNameFromHeuristic(heuristic), solution_length, len(search_list), end - start, node_to_test.to_line()])
+                if GENERATE_CSV:
+                    if solution is None:
+                        csv_data.append([i+1, "UCS", "NA", "NA", "NA", node_to_test.to_line()])
+                    else:
+                        cur = solution[1]
+                        solution_length = 0;
+                        while cur != None:
+                            cur = cur.parent
+                            solution_length += 1
+                        csv_data.append([i+1, "A/A*", heuristicNameFromHeuristic(heuristic), solution_length, len(search_list), end - start, node_to_test.to_line()])
                 print("Final (Solved) Node:")
                 print()
                 print(solution)
