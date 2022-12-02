@@ -112,7 +112,6 @@ if __name__ == '__main__':
        
 
         if TEST_UCS:
-            print(node_to_test)
             print("Running Uniform Cost Search")
 
             start = perf_counter()
