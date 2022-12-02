@@ -168,11 +168,17 @@ class Node:
         return moves
 
     def board_to_string(self):
-        ret = ''
+        ret = '  | a b c d e f |\n'
+        ret += '-----------------\n'
         for i in range(6):
+            ret += str(i) + '| '
             for j in range(6):
                 ret += self.board[i][j] + ' '
-            ret += '\n'
+            if (i != 2):
+                ret += '|\n'
+            else:
+                ret += '\n'
+        ret += '-----------------\n'
         return ret
 
     def __repr__(self):
