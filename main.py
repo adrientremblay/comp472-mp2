@@ -207,12 +207,18 @@ if __name__ == '__main__':
                 print("Final (Solved) Node:")
                 print()
                 print(solution)
+                
                 #solution, search_list = GBFS_algo(node_to_test, estimator=heuristics.check_heuristic2)
-                #create_search_file(search_list=search_list,search_algo_name="gbfs",test_number=i+1, heuristic_name="h2")
+                #create_solution_file(search_list=search_list, search_algo_name="gbfs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start, heuristic_name="h2")
+                #create_search_file(search_list=search_list,search_algo_name="gbfs",test_number=i+1, heuristic_name="h2") 
+
                 #solution, search_list = GBFS_algo(node_to_test, estimator=heuristics.check_heuristic3, mult = 5)
-                #create_search_file(search_list=search_list,search_algo_name="gbfs",test_number=i+1, heuristic_name="h3")
+                #create_search_file(search_list=search_list,search_algo_name="gbfs",test_number=i+1, heuristic_name="h3") 
+                #create_solution_file(search_list=search_list, search_algo_name="gbfs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start, heuristic_name="h3")
+
                 #solution, search_list = GBFS_algo(node_to_test, estimator=heuristics.check_heuristic4)
-                #create_search_file(search_list=search_list,search_algo_name="gbfs",test_number=i+1, heuristic_name="h4")
+                #create_search_file(search_list=search_list,search_algo_name="gbfs",test_number=i+1, heuristic_name="h4") 
+                #create_solution_file(search_list=search_list, search_algo_name="gbfs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start, heuristic_name="h4")
 
         if TEST_ALGO_ASTAR:
             for heuristic in heuristics_to_use:
@@ -237,12 +243,19 @@ if __name__ == '__main__':
                 print("Final (Solved) Node:")
                 print()
                 print(solution)
+                
                 #solution, search_list = algo_a_astar(node_to_test, estimator=heuristics.check_heuristic2)
                 #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h2")
+                #create_solution_file(search_list=search_list, search_algo_name="a", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start, heuristic_name="h2")
+ 
+
                 #solution, search_list = algo_a_astar(node_to_test, estimator=heuristics.check_heuristic3, mult = 5)
                 #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h3")
+                #create_solution_file(search_list=search_list, search_algo_name="a", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start, heuristic_name="h3") 
+
                 #solution, search_list = algo_a_astar(node_to_test, estimator=heuristics.check_heuristic4)
-                #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h4")
+                #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h4") 
+                #create_solution_file(search_list=search_list, search_algo_name="a", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start, heuristic_name="h4")
 
     if (GENERATE_CSV):
         # stuff
