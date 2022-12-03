@@ -191,9 +191,9 @@ if __name__ == '__main__':
                 solution, search_list = GBFS_algo(node_to_test, estimator=heuristic)
                 end = perf_counter()
                 if GENERATE_SEARCH_FILE:
-                    create_search_file(search_list=search_list,search_algo_name="gbsf",test_number=i+1)
+                    create_search_file(search_list=search_list,search_algo_name="gbfs",test_number=i+1)
                 if GENERATE_SOLUTION_FILE:
-                    create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start)
+                    create_solution_file(search_list=search_list, search_algo_name="gbfs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start)
                 if GENERATE_CSV:
                     if solution is None:
                         csv_data.append([i+1, "UCS", "NA", "NA", "NA", node_to_test.to_line()])
@@ -208,11 +208,11 @@ if __name__ == '__main__':
                 print()
                 print(solution)
                 #solution, search_list = GBFS_algo(node_to_test, estimator=heuristics.check_heuristic2)
-                #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h2")
+                #create_search_file(search_list=search_list,search_algo_name="gbfs",test_number=i+1, heuristic_name="h2")
                 #solution, search_list = GBFS_algo(node_to_test, estimator=heuristics.check_heuristic3, mult = 5)
-                #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h3")
+                #create_search_file(search_list=search_list,search_algo_name="gbfs",test_number=i+1, heuristic_name="h3")
                 #solution, search_list = GBFS_algo(node_to_test, estimator=heuristics.check_heuristic4)
-                #create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name="h4")
+                #create_search_file(search_list=search_list,search_algo_name="gbfs",test_number=i+1, heuristic_name="h4")
 
         if TEST_ALGO_ASTAR:
             for heuristic in heuristics_to_use:
@@ -223,7 +223,7 @@ if __name__ == '__main__':
                 if GENERATE_SEARCH_FILE:
                     create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1)
                 if GENERATE_SOLUTION_FILE:
-                    create_solution_file(search_list=search_list, search_algo_name="ucs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start)
+                    create_solution_file(search_list=search_list, search_algo_name="a", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start)
                 if GENERATE_CSV:
                     if solution is None:
                         csv_data.append([i+1, "UCS", "NA", "NA", "NA", node_to_test.to_line()])
