@@ -136,7 +136,7 @@ if __name__ == '__main__':
     test_root_nodes, lines = parse_file('input.txt')
     #test_root_nodes, lines = parse_file('random_puzzles.txt')
 
-    tests_to_run = [0] # if empty then all root_nodes will be tested
+    tests_to_run = [] # if empty then all root_nodes will be tested
     heuristics_to_use = [heuristics.check_heuristic1, heuristics.check_heuristic2, heuristics.check_heuristic3, heuristics.check_heuristic4]
 
     csv_data = []
@@ -223,10 +223,10 @@ if __name__ == '__main__':
                 print()
                 print(solution)
 
-    if (GENERATE_CSV):
+    if GENERATE_CSV:
         # stuff
-        csv_header = ['Puzzle Number', 'Algorithm', 'Heuristic', 'Length of the Solution', 'Length of the Search Path', 'Execution Time (in seconds)', 'Board (not an actual col)']
-        with open('swag.csv', 'w', encoding='UTF8', newline='') as f:
+        csv_header = ['Puzzle Number', 'Algorithm', 'Heuristic', 'Length of the Solution', 'Length of the Search Path', 'Execution Time (in seconds)', 'Board']
+        with open('output/table.csv', 'w', encoding='UTF8', newline='') as f:
             writer = csv.writer(f)
 
             # write the header
