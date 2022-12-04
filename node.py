@@ -195,3 +195,12 @@ class Node:
             for j in range(6):
                 ret += self.board[i][j]
         return ret
+
+    def list_cars_not_at_100(self):
+        ret = "!"
+        for car_name in self.cars:
+            c = self.cars[car_name]
+            if c.fuel != 100:
+               ret += " " + c.name + str(c.fuel)
+        return ret
+

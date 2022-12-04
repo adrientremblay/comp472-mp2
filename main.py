@@ -108,8 +108,9 @@ def create_solution_file(search_list, search_algo_name, test_number, node_to_tes
     while cur is not None and cur.parent is not None:
         solution_path.insert(0 , cur)
         cur = cur.parent
-    
-    sol_txt = f"Initial Board Configuration: {lines} \n"
+
+    sol_txt = "--------------------------------------------------------------------------------\n\n"
+    sol_txt += f"Initial Board Configuration: {lines} \n"
     sol_txt += f"{node_to_test.board_to_string()}\n" 
     sol_txt += f"Car fuel available: {[(k,v.fuel) for (k,v) in sorted(node_to_test.cars.items())]} \n" # fuel
     sol_txt += f"Runtime: {round(eTime,1) } seconds \n" # uses time in the method
@@ -135,7 +136,9 @@ def create_solution_file(search_list, search_algo_name, test_number, node_to_tes
         
 
         sol_txt += f"\n"
-        sol_txt += f"{solution.board_to_string()}\n" #solution board
+        sol_txt += f"{solution.board_to_string()}" #solution board
+        sol_txt += str(solution.list_cars_not_at_100()) + "\n"
+    sol_txt += "\n--------------------------------------------------------------------------------"
 
     soultion_file.write(sol_txt)
     soultion_file.close()
