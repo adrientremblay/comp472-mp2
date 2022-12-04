@@ -12,7 +12,7 @@ TEST_ALGO_ASTAR = True
 TEST_GBFS = True
 GENERATE_SEARCH_FILE = False
 GENERATE_SOLUTION_FILE = True
-GENERATE_CSV = False
+GENERATE_CSV = True
 
 def parse_line(line):
     board = [[0]*6 for i in range(6)] ;
@@ -43,7 +43,6 @@ def parse_file(file_name):
             continue
 
         input_lines.append(line)
-
 
         nodes.append(parse_line(line))
 
