@@ -93,7 +93,7 @@ class Node:
                 new_node.cost += 1
                 new_node.parent = self
                 new_node.move_name = car.name + " left " + str(distance_travelled)
-                new_node.move_fuel = car.fuel
+                new_node.move_fuel = new_node.cars[car.name].fuel
                 moves.append(new_node)
             for j in range (right + 1, min(n, right + car.fuel + 1)): # finding moves to the right
                 if self.board[i][j] != '.':
@@ -117,7 +117,7 @@ class Node:
                 new_node.cost += 1
                 new_node.parent = self
                 new_node.move_name = car.name + " right " + str(distance_travelled)
-                new_node.move_fuel = car.fuel
+                new_node.move_fuel = new_node.cars[car.name].fuel
                 moves.append(new_node)
         else: # finding vertical moves
             j = car.coord1[1]
@@ -142,7 +142,7 @@ class Node:
                 new_node.cost += 1
                 new_node.parent = self
                 new_node.move_name = car.name + " up " + str(distance_travelled)
-                new_node.move_fuel = car.fuel
+                new_node.move_fuel = new_node.cars[car.name].fuel
                 moves.append(new_node)
             for i in range (bottom + 1, min(n, bottom + car.fuel + 1)): # finding moves downwards
                 if self.board[i][j] != '.':
@@ -162,7 +162,7 @@ class Node:
                 new_node.cost += 1
                 new_node.parent = self
                 new_node.move_name = car.name + " down " + str(distance_travelled)
-                new_node.move_fuel = car.fuel
+                new_node.move_fuel = new_node.cars[car.name].fuel
                 moves.append(new_node)
 
         return moves
