@@ -14,17 +14,6 @@ GENERATE_SEARCH_FILE = False
 GENERATE_SOLUTION_FILE = True
 GENERATE_CSV = False
 
-def heuristicNameFromHeuristic(heuristic):
-    if (heuristic == heuristics.check_heuristic1):
-        return "h1"
-    elif (heuristic == heuristics.check_heuristic2):
-        return "h2"
-    elif (heuristic == heuristics.check_heuristic3):
-        return "h3"
-    elif (heuristic == heuristics.check_heuristic4):
-        return "h4"
-    return None
-
 def parse_line(line):
     board = [[0]*6 for i in range(6)] ;
     cur = 0;
@@ -194,9 +183,9 @@ if __name__ == '__main__':
                 solution, search_list = GBFS_algo(node_to_test, estimator=heuristic)
                 end = perf_counter()
                 if GENERATE_SEARCH_FILE:
-                    create_search_file(search_list=search_list,search_algo_name="gbfs",test_number=i+1)
+                    create_search_file(search_list=search_list,search_algo_name="gbfs",test_number=i+1, heuristic_name=heuristics.heuristic_name_from_heuristic(heuristic))
                 if GENERATE_SOLUTION_FILE:
-                    create_solution_file(search_list=search_list, search_algo_name="gbfs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start)
+                    create_solution_file(search_list=search_list, search_algo_name="gbfs", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start, heuristic_name=heuristics.heuristic_name_from_heuristic(heuristic))
                 if GENERATE_CSV:
                     if solution is None:
                         csv_data.append([i+1, "UCS", "NA", "NA", "NA", node_to_test.to_line()])
@@ -206,7 +195,7 @@ if __name__ == '__main__':
                         while cur != None:
                             cur = cur.parent
                             solution_length += 1
-                        csv_data.append([i+1, "GBFS", heuristicNameFromHeuristic(heuristic), solution_length, len(search_list), end - start, node_to_test.to_line()])
+                        csv_data.append([i+1, "GBFS", heuristics.heuristic_name_from_heuristic(heuristic), solution_length, len(search_list), end - start, node_to_test.to_line()])
                 print("Final (Solved) Node:")
                 print()
                 print(solution)
@@ -218,9 +207,9 @@ if __name__ == '__main__':
                 solution, search_list = algo_a_astar(node_to_test, heuristic)
                 end = perf_counter()
                 if GENERATE_SEARCH_FILE:
-                    create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1)
+                    create_search_file(search_list=search_list,search_algo_name="a",test_number=i+1, heuristic_name=heuristics.heuristic_name_from_heuristic(heuristic))
                 if GENERATE_SOLUTION_FILE:
-                    create_solution_file(search_list=search_list, search_algo_name="a", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start)
+                    create_solution_file(search_list=search_list, search_algo_name="a", test_number=i+1,node_to_test = node_to_test,lines = lines[i],solution = solution,eTime= end-start, heuristic_name=heuristics.heuristic_name_from_heuristic(heuristic))
                 if GENERATE_CSV:
                     if solution is None:
                         csv_data.append([i+1, "UCS", "NA", "NA", "NA", node_to_test.to_line()])
@@ -230,7 +219,7 @@ if __name__ == '__main__':
                         while cur != None:
                             cur = cur.parent
                             solution_length += 1
-                        csv_data.append([i+1, "A/A*", heuristicNameFromHeuristic(heuristic), solution_length, len(search_list), end - start, node_to_test.to_line()])
+                        csv_data.append([i+1, "A/A*", heuristics.heuristic_name_from_heuristic(heuristic), solution_length, len(search_list), end - start, node_to_test.to_line()])
                 print("Final (Solved) Node:")
                 print()
                 print(solution)
