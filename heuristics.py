@@ -51,3 +51,15 @@ def check_heuristic4(state, multiplier=1):
                 has_both_hor_vert = 1
                 break
     return len(list_vehicles) + has_both_hor_vert
+
+def heuristic_name_from_heuristic(heuristic):
+    if heuristic == check_heuristic1:
+        return "h1"
+    elif heuristic == check_heuristic2:
+        return "h2"
+    elif heuristic == check_heuristic3:
+        return "h3"
+    elif heuristic == check_heuristic4:
+        return "h4"
+    return None
+
