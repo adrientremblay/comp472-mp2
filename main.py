@@ -102,7 +102,7 @@ def create_solution_file(search_list, search_algo_name, test_number, node_to_tes
     sol_txt += f"Initial Board Configuration: {lines} \n"
     sol_txt += f"{node_to_test.board_to_string()}\n" 
     sol_txt += f"Car fuel available: {[(k,v.fuel) for (k,v) in sorted(node_to_test.cars.items())]} \n" # fuel
-    sol_txt += f"Runtime: {round(eTime,1) } seconds \n" # uses time in the method
+    sol_txt += f"Runtime: {round(eTime,3) } seconds \n" # uses time in the method
     sol_txt += f"Search path length: {len(search_list)} states\n" # search path
     
     if no_solution:
@@ -118,9 +118,8 @@ def create_solution_file(search_list, search_algo_name, test_number, node_to_tes
     
         for n in solution_path :
             sol_txt += n.move_name + "\t" + str(n.move_fuel) + " "
-            for i in range(0,6):
-                for j in range(0, 6):
-                    sol_txt += n.board[i][j]
+            sol_txt += n.to_line() + " "
+            sol_txt += n.list_cars_not_at_100()
             sol_txt += f"\n"   
         
 
