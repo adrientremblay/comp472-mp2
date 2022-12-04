@@ -1,0 +1,9 @@
+2 0 2 .CCCG..DD.G.AA.BB.IFF...I.HEE.I.H...
+1 1 0 .CCCG..DD.G.AA....IFF...I.HEE.I.H...
+2 2 0 CCC.G..DD.G.AA....IFF...I.HEE.I.H... C99
+2 2 0 .CCCG.DD..G.AA....IFF...I.HEE.I.H... D99
+2 2 0 .CCCG...DDG.AA....IFF...I.HEE.I.H... D99
+2 2 0 .CCCG..DD.G..AA...IFF...I.HEE.I.H... A99
+2 2 0 .CCCG..DD.G...AA..IFF...I.HEE.I.H... A98
+2 2 0 .CCCG..DD.G....AA.IFF...I.HEE.I.H... A97
+2 2 0 .CCCG..DD.G.....AAIFF...I.HEE.I.H... A96

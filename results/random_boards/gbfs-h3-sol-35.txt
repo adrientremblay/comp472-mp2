@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+
+Initial Board Configuration: .B.....B..C...AAC.DFFFC.DGHIEE.GHI..
+ 
+  | a b c d e f |
+-----------------
+0| . B . . . . |
+1| . B . . C . |
+2| . . A A C . 
+3| D F F F C . |
+4| D G H I E E |
+5| . G H I . . |
+-----------------
+
+Car fuel available: [('A', 100), ('B', 100), ('C', 100), ('D', 100), ('E', 100), ('F', 100), ('G', 100), ('H', 100), ('I', 100)] 
+Runtime: 6.789 seconds 
+Search path length: 562 states
+Solution path length: 10
+Solution Path: C up 1; A left 2; D down 1; F right 2; H up 4; F left 3; I up 4; E left 2; C down 3; A right 4; 
+
+C up 1	99 .B..C..B..C...AAC.DFFF..DGHIEE.GHI.. ! C99
+A left 2	98 .B..C..B..C.AA..C.DFFF..DGHIEE.GHI.. ! C99 A98
+D down 1	99 .B..C..B..C.AA..C..FFF..DGHIEEDGHI.. ! C99 A98 D99
+F right 2	98 .B..C..B..C.AA..C....FFFDGHIEEDGHI.. ! C99 A98 D99 F98
+H up 4	96 .BH.C..BH.C.AA..C....FFFDG.IEEDG.I.. ! C99 A98 D99 F98 H96
+F left 3	95 .BH.C..BH.C.AA..C.FFF...DG.IEEDG.I.. ! C99 A98 D99 F95 H96
+I up 4	96 .BHIC..BHIC.AA..C.FFF...DG..EEDG.... ! C99 A98 D99 F95 H96 I96
+E left 2	98 .BHIC..BHIC.AA..C.FFF...DGEE..DG.... ! C99 A98 D99 F95 H96 I96 E98
+C down 3	96 .BHI...BHI..AA....FFF.C.DGEEC.DG..C. ! C96 A98 D99 F95 H96 I96 E98
+A right 4	94 .BHI...BHI......AAFFF.C.DGEEC.DG..C. ! C96 A94 D99 F95 H96 I96 E98
+
+  | a b c d e f |
+-----------------
+0| . B H I . . |
+1| . B H I . . |
+2| . . . . A A 
+3| F F F . C . |
+4| D G E E C . |
+5| D G . . C . |
+-----------------
+! C96 A94 D99 F95 H96 I96 E98
+
+--------------------------------------------------------------------------------

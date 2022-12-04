@@ -1,0 +1,18 @@
+1 0 1 ........EEFF.AADD.GBB...GIHHCC.I....
+1 1 0 ........EEFF.AA...GBB...GIHHCC.I....
+2 1 1 .......EE.FF.AADD.GBB...GIHHCC.I.... E99
+2 1 1 ......EE..FF.AADD.GBB...GIHHCC.I.... E98
+2 1 1 ........EEFFAA.DD.GBB...GIHHCC.I.... A99
+2 1 1 ........EEFFGAADD.GBB....IHHCC.I.... G99
+2 1 1 ......G.EEFFGAADD..BB....IHHCC.I.... G98
+2 1 1 G.....G.EEFF.AADD..BB....IHHCC.I.... G97
+2 1 1 ........EEFF.AADD..BB...GIHHCCGI.... G99
+2 1 1 ........EEFF.AADD.G.BB..GIHHCC.I.... B99
+2 1 1 ........EEFF.AADD.G..BB.GIHHCC.I.... B98
+2 1 1 ........EEFF.AADD.G...BBGIHHCC.I.... B97
+2 2 0 .......EE.FF.AA...GBB...GIHHCC.I.... E99
+2 2 0 ......EE..FF.AA...GBB...GIHHCC.I.... E98
+2 2 0 ........EEFFAA....GBB...GIHHCC.I.... A99
+2 2 0 ........EEFF..AA..GBB...GIHHCC.I.... A99
+2 2 0 ........EEFF...AA.GBB...GIHHCC.I.... A98
+2 2 0 ........EEFF....AAGBB...GIHHCC.I.... A97

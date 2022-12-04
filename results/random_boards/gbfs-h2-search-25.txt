@@ -1,0 +1,12 @@
+2 0 2 ..HHBB..DD..AACC..GEEE..GIFFF..I....
+0 1 0 ..HHBB..DD..AA....GEEE..GIFFF..I....
+0 2 0 .HH.BB..DD..AA....GEEE..GIFFF..I.... H99
+0 2 0 HH..BB..DD..AA....GEEE..GIFFF..I.... H98
+0 2 0 ..HHBB.DD...AA....GEEE..GIFFF..I.... D99
+0 2 0 ..HHBBDD....AA....GEEE..GIFFF..I.... D98
+0 2 0 ..HHBB...DD.AA....GEEE..GIFFF..I.... D99
+0 2 0 ..HHBB....DDAA....GEEE..GIFFF..I.... D98
+0 2 0 ..HHBB..DD...AA...GEEE..GIFFF..I.... A99
+0 2 0 ..HHBB..DD....AA..GEEE..GIFFF..I.... A98
+0 2 0 ..HHBB..DD.....AA.GEEE..GIFFF..I.... A97
+0 2 0 ..HHBB..DD......AAGEEE..GIFFF..I.... A96

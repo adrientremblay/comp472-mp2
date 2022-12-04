@@ -10,7 +10,7 @@ DEBUG = False
 TEST_UCS = True
 TEST_ALGO_ASTAR = True
 TEST_GBFS = True
-GENERATE_SEARCH_FILE = False
+GENERATE_SEARCH_FILE = True
 GENERATE_SOLUTION_FILE = True
 GENERATE_CSV = True
 
@@ -49,7 +49,7 @@ def parse_file(file_name):
     return nodes,input_lines # added to capture line 
 #
 def create_search_file(search_list, search_algo_name, test_number, heuristic_name="h1"):
-    file_name = "output/" + search_algo_name
+    file_name = "results/random_boards/" + search_algo_name
     if search_algo_name != "ucs":
         file_name += "-" + heuristic_name
     file_name += "-search-" + str(test_number) + ".txt"
@@ -78,7 +78,7 @@ def create_search_file(search_list, search_algo_name, test_number, heuristic_nam
     search_file.close()
 
 def create_solution_file(search_list, search_algo_name, test_number, node_to_test,lines,solution, eTime, heuristic_name="h1"):
-    file_name = "output/" + search_algo_name
+    file_name = "results/random_boards/" + search_algo_name
     if search_algo_name != "ucs":
         file_name += "-" + heuristic_name
     file_name += "-sol-" + str(test_number) + ".txt"
@@ -135,7 +135,7 @@ if __name__ == '__main__':
     #test_root_nodes, lines = parse_file('input.txt')
     test_root_nodes, lines = parse_file('random_puzzles.txt')
 
-    tests_to_run = [3] # if empty then all root_nodes will be tested
+    tests_to_run = [] # if empty then all root_nodes will be tested
     heuristics_to_use = [heuristics.check_heuristic1, heuristics.check_heuristic2, heuristics.check_heuristic3, heuristics.check_heuristic4]
 
     csv_data = []

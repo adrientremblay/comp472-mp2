@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+
+Initial Board Configuration: DDD......HH.GAA.F.G.BBF.EECCI.....I.
+ 
+  | a b c d e f |
+-----------------
+0| D D D . . . |
+1| . . . H H . |
+2| G A A . F . 
+3| G . B B F . |
+4| E E C C I . |
+5| . . . . I . |
+-----------------
+
+Car fuel available: [('A', 100), ('B', 100), ('C', 100), ('D', 100), ('E', 100), ('F', 100), ('G', 100), ('H', 100), ('I', 100)] 
+Runtime: 0.09 seconds 
+Search path length: 13 states
+Solution path length: 3
+Solution Path: H left 1; F up 2; A right 3; 
+
+H left 1	99 DDD.....HH..GAA.F.G.BBF.EECCI.....I. ! H99
+F up 2	98 DDD.F...HHF.GAA...G.BB..EECCI.....I. ! H99 F98
+A right 3	97 DDD.F...HHF.G...AAG.BB..EECCI.....I. ! H99 A97 F98
+
+  | a b c d e f |
+-----------------
+0| D D D . F . |
+1| . . H H F . |
+2| G . . . A A 
+3| G . B B . . |
+4| E E C C I . |
+5| . . . . I . |
+-----------------
+! H99 A97 F98
+
+--------------------------------------------------------------------------------

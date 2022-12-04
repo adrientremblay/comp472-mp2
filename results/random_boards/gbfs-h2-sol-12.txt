@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+
+Initial Board Configuration: CDDII.CFFE..CAAEH.G...H.G.BBB.......
+ 
+  | a b c d e f |
+-----------------
+0| C D D I I . |
+1| C F F E . . |
+2| C A A E H . 
+3| G . . . H . |
+4| G . B B B . |
+5| . . . . . . |
+-----------------
+
+Car fuel available: [('A', 100), ('B', 100), ('C', 100), ('D', 100), ('E', 100), ('F', 100), ('G', 100), ('H', 100), ('I', 100)] 
+Runtime: 0.057 seconds 
+Search path length: 12 states
+Solution path length: 5
+Solution Path: I right 1; E up 1; B left 1; H down 1; A right 3; 
+
+I right 1	99 CDD.IICFFE..CAAEH.G...H.G.BBB....... ! I99
+E up 1	99 CDDEIICFFE..CAA.H.G...H.G.BBB....... ! I99 E99
+B left 1	99 CDDEIICFFE..CAA.H.G...H.GBBB........ ! I99 E99 B99
+H down 1	99 CDDEIICFFE..CAA...G...H.GBBBH....... ! I99 E99 H99 B99
+A right 3	97 CDDEIICFFE..C...AAG...H.GBBBH....... ! I99 E99 A97 H99 B99
+
+  | a b c d e f |
+-----------------
+0| C D D E I I |
+1| C F F E . . |
+2| C . . . A A 
+3| G . . . H . |
+4| G B B B H . |
+5| . . . . . . |
+-----------------
+! I99 E99 A97 H99 B99
+
+--------------------------------------------------------------------------------

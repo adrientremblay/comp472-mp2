@@ -1,0 +1,7 @@
+3 0 3 ...G.....G..AACDD.EIC.BBEICHFF.I.H..
+1 1 1 ...G.....G..AAC...EIC.BBEICHFF.I.H..
+0 2 0 ...G.....G..AA....EIC.BBEICHFF.ICH.. C99
+0 3 0 ...G.....G...AA...EIC.BBEICHFF.ICH.. A99 C99
+0 3 0 ...G.....G....AA..EIC.BBEICHFF.ICH.. A98 C99
+0 3 0 ...G.....G.....AA.EIC.BBEICHFF.ICH.. A97 C99
+0 3 0 ...G.....G......AAEIC.BBEICHFF.ICH.. A96 C99

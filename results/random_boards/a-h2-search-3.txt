@@ -1,0 +1,6 @@
+2 0 2 .HEEF..H..F.AACC..DII...DBBBG.D...G.
+1 1 0 .HEEF..H..F.AA....DII...DBBBG.D...G.
+2 2 0 .HEEF..H..F..AA...DII...DBBBG.D...G. A99
+2 2 0 .HEEF..H..F...AA..DII...DBBBG.D...G. A98
+2 2 0 .HEEF..H..F....AA.DII...DBBBG.D...G. A97
+2 2 0 .HEEF..H..F.....AADII...DBBBG.D...G. A96
