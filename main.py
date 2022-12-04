@@ -12,7 +12,7 @@ TEST_ALGO_ASTAR = True
 TEST_GBFS = True
 GENERATE_SEARCH_FILE = False
 GENERATE_SOLUTION_FILE = True
-GENERATE_CSV = False
+GENERATE_CSV = True
 
 def parse_line(line):
     board = [[0]*6 for i in range(6)] ;
@@ -43,7 +43,6 @@ def parse_file(file_name):
             continue
 
         input_lines.append(line)
-
 
         nodes.append(parse_line(line))
 
@@ -133,10 +132,10 @@ def create_solution_file(search_list, search_algo_name, test_number, node_to_tes
 
 
 if __name__ == '__main__':
-    test_root_nodes, lines = parse_file('input.txt')
-    #test_root_nodes, lines = parse_file('random_puzzles.txt')
+    #test_root_nodes, lines = parse_file('input.txt')
+    test_root_nodes, lines = parse_file('random_puzzles.txt')
 
-    tests_to_run = [] # if empty then all root_nodes will be tested
+    tests_to_run = [3] # if empty then all root_nodes will be tested
     heuristics_to_use = [heuristics.check_heuristic1, heuristics.check_heuristic2, heuristics.check_heuristic3, heuristics.check_heuristic4]
 
     csv_data = []
